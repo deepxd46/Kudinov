@@ -1,0 +1,13 @@
+A = [0,1,2,3,4,5,6,7,8,9]
+print(A[:])
+print(A[0:len(A)])
+print(A[2:5])
+print(A[:5])
+print(A[2:])
+print(A[-3:-1])
+print(A[::1])
+print(A[::2])
+print(A[::-1])
+print(A[::-2])
+print(A[-3:-7:-1])
+print(A[7:3:-1])
