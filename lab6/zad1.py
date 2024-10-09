@@ -1,4 +1,3 @@
-# Определяем имя файла
 file_name = r'D:\GITHUB\Kudinov\lab6\textfile.txt'
 
 file = open(file_name, 'r+', encoding='utf-8')
