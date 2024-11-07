@@ -1,5 +1,5 @@
 def vvod():
-    n = int(input("Ввкдите количество элементов: "))
+    n = int(input("Введите количество элементов: "))
     massiv = []
 
     for i in range(n):
