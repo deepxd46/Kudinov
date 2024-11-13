@@ -10,9 +10,10 @@ def write_numbers(file_path, numbers):
 def bubble_sort_asc(arr):
     n = len(arr)
     for i in range(n):
-        for j in range(0, n-i-1):
-            if arr[j] > arr[j+1]:  
-                arr[j], arr[j+1] = arr[j+1], arr[j]
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                print(f"Промежуточный шаг (i={i}, j={j}): {arr}")
     return arr
 
 if __name__ == "__main__":
@@ -20,6 +21,7 @@ if __name__ == "__main__":
     output_file = r'D:\GITHUB\Kudinov\lab10\2.txt'
 
     numbers = read_numbers(input_file)
+    print(f"Исходный массив: {numbers}")
     sorted_numbers = bubble_sort_asc(numbers)
     write_numbers(output_file, sorted_numbers)
     print(f"Сортировка пузырьком по возрастанию завершена. Результат записан в {output_file}")

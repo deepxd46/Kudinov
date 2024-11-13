@@ -15,17 +15,21 @@ def counting_sort_asc(arr):
     
     for num in arr:
         count[num - min_val] += 1
+    print(f"Промежуточное состояние счётчика: {count}")
     
     sorted_arr = []
     for i, cnt in enumerate(count):
         sorted_arr.extend([i + min_val] * cnt)
+        if cnt > 0:
+            print(f"Добавление числа {i + min_val} в отсортированный массив: {sorted_arr}")
     return sorted_arr
 
 if __name__ == "__main__":
-    input_file = r'D:\GITHUB\Kudinov\lab10\3.txt'      
-    output_file = r'D:\GITHUB\Kudinov\lab10\4.txt'  
+    input_file = r'D:\GITHUB\Kudinov\lab10\3.txt'
+    output_file = r'D:\GITHUB\Kudinov\lab10\4.txt'
 
     numbers = read_numbers(input_file)
+    print(f"Исходный массив: {numbers}")
     sorted_numbers = counting_sort_asc(numbers)
     write_numbers(output_file, sorted_numbers)
     print(f"Сортировка подсчетом по возрастанию завершена. Результат записан в {output_file}")

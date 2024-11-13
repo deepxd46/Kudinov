@@ -9,12 +9,15 @@ def write_numbers(file_path, numbers):
 
 def merge(left, right):
     result = []
+    print(f"Слияние: левый={left}, правый={right}")
     while left and right:
         if left[0] > right[0]:  
             result.append(left.pop(0))
         else:
             result.append(right.pop(0))
-    result.extend(left or right)  
+        print(f"Промежуточный результат слияния: {result}")
+    result.extend(left or right)
+    print(f"Результат после завершения слияния: {result}")
     return result
 
 def merge_sort_desc(arr):
@@ -23,13 +26,15 @@ def merge_sort_desc(arr):
     mid = len(arr) // 2
     left = merge_sort_desc(arr[:mid])
     right = merge_sort_desc(arr[mid:])
+    print(f"Разделение: левый={left}, правый={right}")
     return merge(left, right)
 
 if __name__ == "__main__":
-    input_file = r'D:\GITHUB\Kudinov\lab10\7.txt'            
-    output_file = r'D:\GITHUB\Kudinov\lab10\8.txt'  
+    input_file = r'D:\GITHUB\Kudinov\lab10\7.txt'
+    output_file = r'D:\GITHUB\Kudinov\lab10\8.txt'
 
     numbers = read_numbers(input_file)
+    print(f"Исходный массив: {numbers}")
     sorted_numbers = merge_sort_desc(numbers)
     write_numbers(output_file, sorted_numbers)
     print(f"Сортировка слиянием по убыванию завершена. Результат записан в {output_file}")
