@@ -62,7 +62,7 @@ def open_algorithm_window():
     if messagebox.askyesno("Подтверждение", "Вы точно хотите открыть новое окно?"):
         algorithm_window = tk.Toplevel(root)
         algorithm_window.title("Окно алгоритма")
-        algorithm_window.geometry("1500x1200")
+        algorithm_window.geometry("1200x1000")
         main_frame = tk.Frame(algorithm_window)
         main_frame.pack(fill='both', expand=True)
         # Для того, чтобы не делать скролл, помещаем влево инструкцию, вправо-окна, с которыми взаимодействуем
@@ -115,10 +115,10 @@ def open_algorithm_window():
         checkbox.pack(pady=3)
 
         input_container_frame = tk.Frame(right_frame)
-        input_container_frame.pack(pady=5)
+        input_container_frame.pack(pady=3)
 
         manual_input_frame = tk.Frame(input_container_frame)
-        input_field = tk.Text(manual_input_frame, height=8, width=60, font=("Arial", 12))
+        input_field = tk.Text(manual_input_frame, height=8, width=70, font=("Arial", 12))
         input_field.pack()
         
         random_input_frame = tk.Frame(input_container_frame)
@@ -140,17 +140,20 @@ def open_algorithm_window():
                 manual_input_frame.pack_forget()
                 random_input_frame.pack()
 
-        tk.Label(right_frame, text="Промежуточные действия:", font=("Arial", 12)).pack(pady=5)
-        steps_area = tk.Text(right_frame, height=10, width=70, font=("Arial", 10), bg="#f7f7f7")
-        steps_area.pack(pady=10)
+        tk.Label(right_frame, text="Промежуточные действия:",  font=("Arial", 12)).pack(pady=5)
+        steps_area = tk.Text(right_frame, height=9, width=70, font=("Arial", 10))
+        steps_area.pack(pady=5)
 
         tk.Label(right_frame, text="Результат обработки:", font=("Arial", 12)).pack(pady=5)
         output_area = tk.Text(right_frame, height=6, width=70, font=("Arial", 12))
-        output_area.pack(pady=10)
+        output_area.pack(pady=5)
 
+        tk.Label(right_frame, text="Время выполнения алгоритма:", font=("Arial", 12)).pack(pady=5)
+        time_label = tk.Label(right_frame, text="", font=("Arial", 12), width=30)
+        time_label.pack(pady=5)
         # Фрейм для графика
-        plot_frame = tk.Frame(right_frame)
-        plot_frame.pack(pady=10)
+        plot_frame = tk.Frame(left_frame)
+        plot_frame.pack(pady=7)
 
         # Фигура для графика
         fig = Figure(figsize=(6, 4), dpi=100)
@@ -186,7 +189,7 @@ def open_algorithm_window():
                 steps_area.delete("1.0", tk.END)
                 directed = is_directed_var.get()
                 method = input_method_var.get()
-
+                time_label.config(text="")
                 if method == "manual":
                     raw_data = input_field.get("1.0", tk.END).strip()
                     if not raw_data:
@@ -310,8 +313,7 @@ def open_algorithm_window():
                         output_area.insert(tk.END, f"Компонента {i}: {component}\n")
 
                 # Вывод времени работы алгоритма
-                output_area.insert(tk.END, f"\nВремя выполнения алгоритма: {elapsed_time:.6f} секунд")
-
+                time_label.config(text=f"{elapsed_time:.6f} секунд")
                 # Обновление графика
                 nodes_list.append(num_nodes)
                 times_list.append(elapsed_time)
